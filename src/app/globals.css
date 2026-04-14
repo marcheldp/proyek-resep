@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* --- BUMBU RAHASIA GLOBAL --- */
+
+@layer base {
+  html {
+    /* Menghilangkan warna biru transparan saat elemen di-klik di HP Android */
+    -webkit-tap-highlight-color: transparent;
+    
+    /* 1. TAMBAHAN: Scrollbar tipis khusus untuk browser Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #E0D4C6 #F2EBE3;
+  }
+
+  /* 2. TAMBAHAN: Aksesibilitas agar ramah bagi penderita motion sickness */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      /* Agar perpindahan antar menu terasa halus, tidak kaku */
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    /* Pastikan warna latar belakang selalu konsisten walau konten belum dimuat */
+    @apply bg-[#F2EBE3] text-gray-900 selection:bg-orange-200 selection:text-orange-900;
+  }
+}
+
+@layer components {
+  /* Efek Glassmorphism yang sering Chef pakai di kartu */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+
+  /* Animasi halus untuk semua tombol */
+  .btn-hover {
+    @apply transition-all duration-300 active:scale-95;
+  }
+}
+
+/* Custom Scrollbar agar lebih tipis dan rapi di WebKit (Chrome/Safari/Edge) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px; /* 3. TAMBAHAN: Merapikan scrollbar horizontal di daftar resep */
+}
+::-webkit-scrollbar-track {
+  background: #F2EBE3;
+}
+::-webkit-scrollbar-thumb {
+  background: #E0D4C6;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d1c4b4;
+}
